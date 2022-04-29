@@ -9,14 +9,16 @@ public abstract class Pizza {
     public enum Topping{ HAM,MUSHROOM,ONION,PEPPER,SAUSAGE}
 
     // 그냥 Set보다 EnumSet이 빠른 이유 찾아보기!
-    final Set<Topping> toppings;
 
+
+    // 재귀적인 타입 제한
+    //
     abstract static class Builder<T extends Builder<T>>
     {
         EnumSet<Topping> toppings = EnumSet.noneOf(Topping.class);
         public T addTopping(Topping topping)
         {
-            topping.add(Objects.requireNonNull(topping));
+
             return self();
         }
 
